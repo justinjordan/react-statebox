@@ -3,5 +3,8 @@
   "version": "0.1.0",
   "main": "src/StateBox.js",
   "author": "Justin Jordan",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.8"
+  }
 }

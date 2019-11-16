@@ -2,39 +2,37 @@
 
 A component for easily orchestrating load, error, and success states.
 
+_Note: This component requires React^16.8 since it uses hooks._
+
 ## Usage
 
 ```
 <StateBox
-    data={() =>
-        new Promise(resolve => {
-            setTimeout(() => {
-                resolve({
-                message: "Everything's cool and everything's smooth.",
-                })
-            }, 2000)
-        })
-    }
-    error={error => <p>{error}</p>}
-    loading={<p>Loading...</p>}
-    render={({ message }) => <p>{message}</p>}
+    data={fetch('https://ipinfo.io/ip').then(res => res.text())}
+    error={err => <p>Error: {err.message}</p>}
+    loading={<p>Getting IP...</p>}
+    render={ip => <p>Your IP is {ip}</p>}
 />
 ```
 
 ## Props
 
-**data**: { object | function }
+`data`: { Function | Promise | Object }
 
-Markup or function that returns markup. If a function is provided, the loading state will be shown until it resolves.
+Context to be passed to render prop.
 
-**error**: { JSX | function }
+`error`: { Function | JSX }
 
-Markup or function that returns markup. Displays if `data` function throws an error.
+Markup or function that returns markup. Displays if `data` prop throws an error.
 
-**loading**: { JSX }
+`loading`: { JSX }
 
 Markup to be shown while `data` function is processing.
 
-**render**: { JSX | function }
+`render`: { Function | JSX }
 
 Markup or function that returns markup.
+
+`minLoadDuration`: { Number } (Default: 300)
+
+Minimum amount of milliseconds to display `loading` prop. This helps to prevent flashing.
