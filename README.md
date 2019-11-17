@@ -1,6 +1,6 @@
 # React StateBox
 
-A component for easily orchestrating load, error, and success states.
+React component for easily orchestrating load, error, and success states.
 
 _Note: This component requires React^16.8 since it uses hooks._
 
